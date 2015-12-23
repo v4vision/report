@@ -7,12 +7,27 @@
 \renewcommand{\arraystretch}{2}
 
 \begin{document}
-  \author{An{\i}l Can Ayd{\i}n, Onur Temizkan, Ula\c{s} Akdeniz}
-  \title{reVision Project Report}
-  \maketitle
-  \begin{figure}[t]
-    \includegraphics[width=10cm,keepaspectratio=true]{iyte}
-  \end{figure}
+  \begin{titlepage}
+    \centering
+    {\scshape\Large Izmir Institute of Technology\par}
+    {\scshape\large Department of Computer Engineering\par}
+    \vspace{2.5cm}
+	  {\huge reVision\par}
+	  \vspace{1cm}
+	  {\Large Renderscript for Computer Vision\par}
+	\vspace{2cm}
+	{\Large An{\i}l Can Ayd{\i}n, Onur Temizkan, Ula\c{s} Akdeniz\par}
+  {\itshape180201060, 180201004, 180201063\par}
+	\vfill
+	supervised by\par
+	\large{Asst Prof Dr.~Mustafa \textsc{\"{O}zuysal}}
+
+	\vfill
+
+% Bottom of the page
+	{\large \today\par}
+  \end{titlepage}
+
 \newpage
 \begin{section}{Description of the Work}
 \paragraph{}{%
@@ -565,6 +580,32 @@
     \end{minipage}
   }
 \end{subsubsection}
+\newpage
+\begin{subsubsection}{Summary Effort Table}
+  \begin{tabularx}{\textwidth}{|*{11}{Y|}}
+   \hline
+   \textbf{P. short name} & \textbf{WP-1} & \textbf{WP-2.1} & \textbf{WP-2.2} & \textbf{WP-3.1} & \textbf{WP-3.2} & \textbf{WP-3.3} & \textbf{WP-3.4} & \textbf{WP-3.5} & \textbf{WP-4} & \textbf{Total person weeks} \\
+   \hline
+   AA & 13 & 1 & 2 & - & 18 & 3 &  - & 2 & 1 & 40 \\
+   \hline
+   OT & 13 & 1 & 2 & 3 & 18 & - &  - & 2 & 1 & 40\\
+   \hline
+   UA & 13 & 1 & 2 & - & 18 & - &  3 & 2 & 1 & 40\\
+  \hline
+ \end{tabularx}
+\end{subsubsection}
+\newpage
+\begin{subsection}{Pert Diagram}
+\end{subsection}
+\newpage
+\begin{subsection}{Risk Management}
+  \paragraph{}{%
+  The development team is unexperienced on computer vision field, so some learning
+  period is required in multiple phases of the project. Especially developing modules that contain algorithms
+  having steep learning curve will take remarkable time in the process. For this reason it is crucial to comply with
+  the schedule.\\
+  }
+\end{subsection}
 \end{section}
 
 \newpage
@@ -581,7 +622,155 @@
       \paragraph{}{reVision uses Renderscript for data-parallel GPU computations. Since Renderscript technology is hardware and version independent among all recent Android devices, reVision can also be used universally on every Android device. The runtime frame-rates vary between different devices but reVision is ensured to work at the most efficient way that the device is capable of.}
     \end{subsubsection}
   \end{subsection}
+  \newpage
+  \begin{subsection}{The Process Model and Its Particular Adaptation}
+    \paragraph{}{According to R. S. Pressman there are several process model types including linear sequential model, prototype model, evolutionary models and etc. In real life most them are used according to the project necessities and requirements.}
+\paragraph{}{reVision is being developed using incremental model which is an evolutionary model. Every release is published after a work cycle which includes all the phases of the software development process. Each release extends the project with at least one module or functionality with its sample application.}
+\paragraph{}{Incremental model is suitable for this project because the project team is not experienced in the computer vision field. The incremental model gives the team, the option of refactoring the design and evolving the project over time, which the other models would not give.}
+\paragraph{}{The development cycle can simply be clarified with following steps; Requirement analysis, Planning, Design, Implementation and Testing. Every development iteration of reVision include each one of those steps.}
+  \end{subsection}
+  \newpage
+  \begin{subsection}{Functional and Non-Functional Requirements}
+    \begin{subsubsection}{Functional Requirements}
+    \end{subsubsection}
+
+    \begin{subsubsection}{Non-Functional Requirements}
+      \paragraph{Performance Requirements:}{
+      The response time problem were the thing that triggered the creation of reVision project. Without reasonable
+      performance, reVision could not be considered successful. To achieve the desired performance, developers implement
+      and use all performance related modules such as implementing Async Model or using Renderscript framework. The
+      performance is the single most important non-functional requirement of reVision.
+      }
+      ​
+      \paragraph{Reliability Requirements:}{
+      The responses of reVision modules must be correct and precise.
+      }
+      ​
+      \paragraph{Usability Requirements:}{ The function arguments and the Android communication modules must be easy
+       to understand and to use. Since it is a library, every function has to be well documented. Also the sample
+       applications have to be complete and ready to test for users.
+      }
+    \end{subsubsection}
+  \end{subsection}
+  \newpage
+  \begin{subsection}{Use Cases}
+    \begin{tabularx}{\textwidth}{|*{2}{Y|}}
+     \hline
+     \multicolumn{1}{|l|}{\textbf{Use Case No}} & 1\\
+     \hline
+     \multicolumn{1}{|l|}{\textbf{Use Case Name}} & Filter Image \\
+     \hline
+     \multicolumn{1}{|l|}{\textbf{Actor}} & User \\
+     \hline
+     \multicolumn{1}{|l|}{\textbf{Preconditions}} & Retrieve data in an appropriate way \\
+     \hline
+     \multicolumn{1}{|l|}{\textbf{Postconditions}} & Return filtered image data \\
+     \hline
+     \multicolumn{1}{|l|}{\textbf{Scenario}} & User gets filtered image\\
+     \hline
+   \end{tabularx}
+   \newline
+   \vspace{1cm}
+   \newline
+   \begin{tabularx}{\textwidth}{|*{2}{Y|}}
+    \hline
+    \multicolumn{1}{|l|}{\textbf{Use Case No}} & 2\\
+    \hline
+    \multicolumn{1}{|l|}{\textbf{Use Case Name}} & Detect Corners with Harris Algorithm \\
+    \hline
+    \multicolumn{1}{|l|}{\textbf{Actor}} & User \\
+    \hline
+    \multicolumn{1}{|l|}{\textbf{Preconditions}} & Retrieve data in an appropriate way \\
+    \hline
+    \multicolumn{1}{|l|}{\textbf{Postconditions}} & Return image with corner data \\
+    \hline
+    \multicolumn{1}{|l|}{\textbf{Scenario}} & Locate all local maxima of the filtered image, then mark the highest N on the image\\
+    \hline
+  \end{tabularx}
+  \newline
+  \vspace{1cm}
+  \newline
+  \begin{tabularx}{\textwidth}{|*{2}{Y|}}
+   \hline
+   \multicolumn{1}{|l|}{\textbf{Use Case No}} & 3\\
+   \hline
+   \multicolumn{1}{|l|}{\textbf{Use Case Name}} & Detect Corners with FAST Algorithm \\
+   \hline
+   \multicolumn{1}{|l|}{\textbf{Actor}} & User \\
+   \hline
+   \multicolumn{1}{|l|}{\textbf{Preconditions}} & Retrieve data in an appropriate way \\
+   \hline
+   \multicolumn{1}{|l|}{\textbf{Postconditions}} & Return image with corner data \\
+   \hline
+   \multicolumn{1}{|l|}{\textbf{Scenario}} & User gets the image marked by FAST corner detection results\\
+   \hline
+ \end{tabularx}
+ \newpage
+  \begin{tabularx}{\textwidth}{|*{2}{Y|}}
+       \hline
+       \multicolumn{1}{|l|}{\textbf{Use Case No}} & 4 \\
+       \hline
+       \multicolumn{1}{|l|}{\textbf{Use Case Name}} & Feature matching with SIFT descriptors \\
+       \hline
+       \multicolumn{1}{|l|}{\textbf{Actor}} & User \\
+       \hline
+       \multicolumn{1}{|l|}{\textbf{Preconditions}} & Retrieve data in an appropriate way \\
+       \hline
+       \multicolumn{1}{|l|}{\textbf{Postconditions}} & Return the image back with markers \\
+       \hline
+       \multicolumn{1}{|l|}{\textbf{Scenario}} & User gets the match of image extracted before \\
+       \hline
+    \end{tabularx}
+    \newline
+    \vspace{1cm}
+    \newline
+    \begin{tabularx}{\textwidth}{|*{2}{Y|}}
+          \hline
+          \multicolumn{1}{|l|}{\textbf{Use Case No}} & 5 \\
+          \hline
+          \multicolumn{1}{|l|}{\textbf{Use Case Name}} & Track a specific object \\
+          \hline
+          \multicolumn{1}{|l|}{\textbf{Actor}} & User \\
+          \hline
+          \multicolumn{1}{|l|}{\textbf{Preconditions}} & Retrieve data in an appropriate way \\
+          \hline
+          \multicolumn{1}{|l|}{\textbf{Postconditions}} & Return the image back with an object marker \\
+          \hline
+          \multicolumn{1}{|l|}{\textbf{Scenario}} & User tracks a specific object \\
+          \hline
+    \end{tabularx} \\
+    \newline
+    \newline
+    \vspace{1cm}
+    \newline
+    \begin{tabularx}{\textwidth}{|*{2}{Y|}}
+             \hline
+             \multicolumn{1}{|l|}{\textbf{Use Case No}} & 6 \\
+             \hline
+             \multicolumn{1}{|l|}{\textbf{Use Case Name}} & Understand functionality of the library with sample applications \\
+             \hline
+             \multicolumn{1}{|l|}{\textbf{Actor}} & User \\
+             \hline
+             \multicolumn{1}{|l|}{\textbf{Preconditions}} & - \\
+             \hline
+             \multicolumn{1}{|l|}{\textbf{Postconditions}} & - \\
+             \hline
+             \multicolumn{1}{|l|}{\textbf{Scenario}} & User understands the functionality of the library with sample applications \\
+             \hline
+           \end{tabularx}
+
+  \end{subsection}
 \end{section}
 
+\newpage
+          \begin{thebibliography}{9}
 
+          \bibitem{lamport94}
+            Leslie Lamport,
+            \emph{\LaTeX: a document preparation system},
+            Addison Wesley, Massachusetts,
+            2nd edition,
+            1994.
+
+          \end{thebibliography}
 \end{document}
