@@ -1,0 +1,570 @@
+\documentclass[12pt, a4paper]{article} \pagenumbering{gobble}
+\usepackage{gantt} \usepackage{pdflscape} \usepackage{parskip}
+\usepackage{afterpage} \usepackage{pbox}
+\usepackage[margin=1in]{geometry} \usepackage{multirow,tabularx}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\renewcommand{\arraystretch}{2}
+
+\begin{document}
+
+  \author{An{\i}l Can Ayd{\i}n, Onur Temizkan, Ula\c{s} Akdeniz}
+  \title{reVision Project Report}
+  \maketitle
+
+\begin{section}{Description of the Work}
+\paragraph{}{Computer vision applications need parallel computation to perform in reasonable response time. In order to satisfy that performance, developers use libraries like OpenCL and CUDA which move the computation load to GPU. However high performance GPU intensive computation on Android platform is a tough issue because of hardware dependencies and incompatibilities of libraries. For instance OpenCL GPU computation library is not supported on all Android devices. So, creating hardware independent applications using OpenCL is simply impossible. Because of those restrictions mentioned above, Renderscript computation module is presented by Google in 2011. It is ﻿a hardware-independent computation engine that operates at the native level. But there is no vision library written in Renderscript.}
+\paragraph{}{reVision is an open source, Renderscript powered computer vision library that can operate on all Android devices. It contains ready to use computer vision algorithm implementations with their sample applications. The vision algorithms are implemented in Renderscript. Also all Renderscript parts have their own Java parts for outer communication with Android platform.}
+\paragraph{}{Response times of reVision modules are small enough to process video streams in real time with minimum data loss. It also can be used in non-blocking way to not affect the other functionalities of client applications.}
+\end{section}
+
+\newpage
+
+\begin{section}{Project Management}
+  \begin{subsection}{Overall Strategy}
+    \paragraph{}{reVision's iterative development process consist of project management and planning, requirement analysis, implementation and testing. Each iteration results in at least one new module with its sample application.}\\ \\
+    Summary of an iteration is described below.
+    \paragraph{Planning:}{The scope of the module to be written, desired specs and details are discussed.}
+    \paragraph{Requirement Analysis:}{The output of the module, needed arguments and optional specs are discussed.}
+    \paragraph{Implementation:}{The module and its sample application is implemented.
+    \begin{itemize}
+      \item Modules are main objectives of the every iteration.
+      \item Proceed every iteration with phases such as: Design, Implement, Test and Evaluate.
+    \end{itemize}}
+    \paragraph{Testing:}{The module and the sample application are validated via unit tests.}
+  \end{subsection}
+
+  \newpage
+
+  \begin{subsection}{Gantt Chart}
+  \vspace*{\fill}
+  \begin{centering}
+  \scalebox{0.7}{
+  \begin{gantt}[xunitlength=0.5cm,fontsize=\small,titlefontsize=\small,drawledgerline=true]{25}{32}
+    \begin{ganttitle}
+      \titleelement{October}{4}
+      \titleelement{November}{4}
+      \titleelement{December}{4}
+      \titleelement{January}{4}
+      \titleelement{February}{4}
+      \titleelement{March}{4}
+      \titleelement{April}{4}
+      \titleelement{May}{4}
+
+    \end{ganttitle}
+    \begin{ganttitle}
+      \numtitle{3}{1}{4}{2}
+      \numtitle{1}{1}{4}{1}
+      \numtitle{1}{1}{4}{1}
+      \numtitle{1}{1}{4}{1}
+      \numtitle{1}{1}{4}{1}
+      \numtitle{1}{1}{4}{1}
+      \numtitle{1}{1}{4}{1}
+      \numtitle{1}{1}{4}{1}
+    \end{ganttitle}
+    \ganttbar[color=purple]{\textbf{Software Development}}{0}{32}
+    \ganttbar[color=red]{\textbf{Research / Requirement Analysis}}{0}{12}
+    \ganttbar[color=purple]{12.10.15 - 04.01.16}{0}{0}
+    \ganttbar[color=red]{\textbf{Design}}{10}{2}
+    \ganttbar[color=purple]{14.12.15 - 04.01.16}{0}{0}
+    \ganttbar[pattern=crosshatch,color=green]{\textbf{Data Model Design}}{10}{1}
+    \ganttbar[color=purple]{14.12.15 - 21.12.15}{0}{0}
+    \ganttbar[pattern=crosshatch,color=green]{\textbf{Domain Model Design}}{11}{1}
+    \ganttbar[color=purple]{21.12.15 - 04.01.16}{0}{0}
+    \ganttbar[color=red]{\textbf{Implementation}}{12}{20}
+    \ganttbar[color=purple]{04.01.16 - 30.05.16}{0}{0}
+    \ganttbar[pattern=crosshatch,color=green]{\textbf{Filter Module}}{12}{3}
+    \ganttbar[color=purple]{04.01.16 - 25.01.16}{0}{0}
+    \ganttbar[pattern=crosshatch,color=green]{\textbf{Feature Module}}{14}{16}
+    \ganttbar[color=purple]{11.01.16 - 16.05.16}{0}{0}
+    \ganttbar[pattern=crosshatch,color=green]{\textbf{Data Module}}{15}{3}
+    \ganttbar[color=purple]{19.01.16 - 09.02.16}{0}{0}
+    \ganttbar[pattern=crosshatch,color=green]{\textbf{Async Module}}{20}{1}
+    \ganttbar[color=purple]{15.02.16 - 07.04.16}{0}{0}
+    \ganttbar[pattern=crosshatch,color=green]{\textbf{Samples}}{29}{2}
+    \ganttbar[color=purple]{09.05.16 - 23.05.16}{0}{0}
+    \ganttbar[pattern=crosshatch,color=green]{\textbf{Test}}{31}{1}
+    \ganttbar[color=purple]{23.05.16 - 30.05.16}{0}{0}
+  \end{gantt}
+  }
+  \end{centering}
+  \vspace*{\fill}
+\end{subsection}
+
+\begin{landscape}% Landscape page
+\subsection{Detailed Work Description}
+  \subsubsection{Work Package List}
+  \scalebox{0.7}{
+   \begin{tabularx}{85em}{|*{8}{Y|}}
+     \hline
+       \textbf{Work Package No} & \textbf{Work Package Title} & \textbf{Type of Activity}\footnotemark[1] & \textbf{Lead Participant No} & \textbf{Lead Participant Short Name} & \textbf{Person weeks}\footnotemark[2] & \textbf{Start Month} & \textbf{End Month} \\
+       \hline
+       WP-1 & Research and Requirement Analysis & MGT & 1-2-3 & AA-OT-UA & 13 & 1 & 4 \\
+       \hline
+       WP-2.1 & Data Model Design & SUPP & 1-2-3 & AA-OT-UA & 1 & 3 & 3 \\
+       \hline
+       WP-2.2 & Domain Model Design & SUPP & 1-2-3 & AA-OT-UA & 2 & 3 & 4 \\
+       \hline
+       WP-3.1 & Filter Module & SUPP & 2 & OT & 3 & 4 & 4 \\
+       \hline
+       WP-3.2 & Feature Module & SUPP & 1-2-3 & AA-OT-UA & 18 & 4 & 8 \\
+       \hline
+       WP-3.3 & Data Module & SUPP & 1 & AA & 3 & 4 & 5 \\
+       \hline
+       WP-3.4 & Async Module & SUPP & 3 & UA & 3 & 5 & 6 \\
+       \hline
+       WP-3.5 & Samples & SUPP & 1-2-3 & AA-OT-UA & 2 & 8 & 8 \\
+       \hline
+       WP-4 & Testing & MGT & 1-2-3 & AA-OT-UA & 1 & 8 & 8 \\
+       \hline
+        \multicolumn{5}{|c|}{\textbf{TOTAL}} & \textbf{46} & & \\
+        \hline
+   \end{tabularx}
+ }
+\footnotetext[1]{\textbf{SUPP} stands for Support activities; \textbf{MGT} stands for Management of the consortium.}
+\footnotetext[2]{The total number of person-weeks allocated to each work package.}
+\end{landscape}
+\subsubsection{Deliverable List}
+    \begin{tabularx}{\textwidth}{|*{6}{Y|}}
+        \hline
+      \textbf{Deliverable No} & \textbf{Deliverable Name} & \textbf{WP No} & \textbf{Nature}\footnote{\textbf{R} = Report, \textbf{P} = Prototype, \textbf{D} = Demonstrator} & \textbf{Dissemination Level}\footnote{\textbf{PU} = Public, \textbf{CO} = Confidential, only for members of the consortium(including the Commission Services)} & \textbf{Delivery Date} \\
+      \hline
+        D-1 & Requirement Design Documents & WP-1 & R & CO & 24.12.2016 \\
+        \hline
+        D-2.1 & Data Model Design & WP-2.1 & R & CO & 21.12.2016 \\
+        \hline
+        D-2.2 & Domain Model Design & WP-2.2 & R & CO & 04.01.2016 \\
+        \hline
+        D-3.1 & Filter Module Implementation & WP-3.1 & P & PU & 25.01.2016 \\
+        \hline
+        D-3.2 & Feature Module Implementation & WP-3.2 & P & PU & 16.05.2016 \\
+        \hline
+        D-3.3 & Data Module Implementation & WP-3.3 & P & PU & 09.02.2016 \\
+        \hline
+        D-3.4 & Async Module Implementation & WP-3.4 & P & PU & 07.04.2016 \\
+        \hline
+        D-3.5 & Samples & WP-3.5 & D & PU & 23.05.2016 \\
+        \hline
+    \end{tabularx}
+\begin{subsubsection}{Milestones List}
+
+    \begin{tabularx}{\textwidth}{|*{5}{Y|}}
+        \hline
+        \textbf{Milestone Number} & \textbf{Milestone Name} & \textbf{Work Package(s) Involved} & \textbf{Expected Date} & \textbf{Means of Verification} \\
+        \hline
+        M1 & Prototype & - & 17.12.2015 & Validated by supervisor \\
+        \hline
+        M2 & Filter Module & WP-3.1 & 04.01.2016 & Validated by supervisor \\
+        \hline
+        M3 & Feature Module & WP-3.2 & 16.05.2016 & Validated by supervisor \\
+        \hline
+        M4 & Data Module & WP-3.3 & 09.02.2016 & Validated by supervisor \\
+        \hline
+        M5 & Async Module & WP-3.4 & 07.04.2016 & Validated by supervisor \\
+        \hline
+        M6 & Samples & WP-3.5 & 23.05.2016 & Validated by supervisor \\
+        \hline
+    \end{tabularx}
+\end{subsubsection}
+\newpage
+\begin{subsubsection}{Work Package Descriptions}
+  \begin{tabularx}{\textwidth}{|*{6}{Y|}}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Work Package Number}}&WP-1&\multicolumn{2}{c|}{\textbf{Start Date:}}&12.10.2015\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Work Package Title}}&\multicolumn{4}{c|}{Research and Requirement Analysis}\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Activity Type}}&\multicolumn{4}{c|}{MGT}\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Participant Number}} &     1   &   2   &   3   &\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Participant Short Name}} &     AA   &   OT   &   UA   &\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Person-weeks per participant:}} &     13 weeks   &   13 weeks   &   13 weeks   &\\
+    \hline
+  \end{tabularx}
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Objectives} \\
+      \begin{itemize}
+      \item Determining the project scope, gathering information about the project,\\
+        determining requirements and analysis.\\
+      \end{itemize}
+    \end{minipage}
+  }
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Description of work} \\
+      \textbf{Task-1:} Determine the project scope \\
+      \textbf{Task-2:} Research about similar works \\
+      \textbf{Task-3:} Making a requirement analyses.\\
+      \textbf{Task-5:} Determine the main modules.\\
+    \end{minipage}
+  }
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Deliverables} \\
+      \begin{itemize}
+      \item Documentation of project description, its scope and requirements.\\
+      \end{itemize}
+    \end{minipage}
+  }
+\newpage
+  \begin{tabularx}{\textwidth}{|*{6}{Y|}}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Work Package Number}}&WP-2.1&\multicolumn{2}{c|}{\textbf{Start Date:}}&14.12.2015\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Work Package Title}}&\multicolumn{4}{c|}{Data Model Design}\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Activity Type}}&\multicolumn{4}{c|}{SUPP}\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Participant Number}} &     1   &   2   &   3   &\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Participant Short Name}} &     AA   &   OT   &   UA   &\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Person-weeks per participant:}} &     1 week   &   1 week   &   1 week   &\\
+    \hline
+  \end{tabularx}
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Objectives} \\
+      \begin{itemize}
+      \item Determining data structures that can be commonly used with computer vision algorithms.\\
+      \end{itemize}
+    \end{minipage}
+  }
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Description of work} \\
+      \textbf{Task-1:} Decide data structures \\
+      \textbf{Task-2:} Discuss the functionalty \\
+    \end{minipage}
+  }
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Deliverables} \\
+      \begin{itemize}
+      \item Data model.\\
+      \end{itemize}
+    \end{minipage}
+  }
+\newpage
+  \begin{tabularx}{\textwidth}{|*{6}{Y|}}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Work Package Number}}&WP-2.2&\multicolumn{2}{c|}{\textbf{Start Date:}}&21.12.2015\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Work Package Title}}&\multicolumn{4}{c|}{Domain Model Design}\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Activity Type}}&\multicolumn{4}{c|}{SUPP}\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Participant Number}} &     1   &   2   &   3   &\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Participant Short Name}} &     AA   &   OT   &   UA   &\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Person-weeks per participant:}} &     2 weeks   &   2 weeks   &   2 weeks   &\\
+    \hline
+  \end{tabularx}
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Objectives} \\
+      \begin{itemize}
+      \item Determine the classes and their attributes.\\
+      \end{itemize}
+    \end{minipage}
+  }
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Description of work} \\
+      \textbf{Task-1:} Determine the classes and their attributes. \\
+      \textbf{Task-2:} Determine the relationships among classes \\
+    \end{minipage}
+  }
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Deliverables} \\
+      \begin{itemize}
+      \item Domain model.\\
+      \end{itemize}
+    \end{minipage}
+  }
+\newpage
+  \begin{tabularx}{\textwidth}{|*{6}{Y|}}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Work Package Number}}&WP-3.1&\multicolumn{2}{c|}{\textbf{Start Date:}}&04.01.2016\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Work Package Title}}&\multicolumn{4}{c|}{Filter Module}\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Activity Type}}&\multicolumn{4}{c|}{SUPP}\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Participant Number}} &     2   &     &     &\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Participant Short Name}} &     OT   &    &     &\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Person-weeks per participant:}} &   3 weeks   &&&\\
+    \hline
+  \end{tabularx}
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Objectives} \\
+      \begin{itemize}
+      \item Implement image filters that are used by other modules.\\
+      \end{itemize}
+    \end{minipage}
+  }
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Description of work} \\
+      \textbf{Task-1:} Implement image filters. \\
+    \end{minipage}
+  }
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Deliverables} \\
+      \begin{itemize}
+      \item Filter Module\\
+      \end{itemize}
+    \end{minipage}
+  }
+\newpage
+  \begin{tabularx}{\textwidth}{|*{6}{Y|}}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Work Package Number}}&WP-3.2&\multicolumn{2}{c|}{\textbf{Start Date:}}&11.01.2016\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Work Package Title}}&\multicolumn{4}{c|}{Feature Module}\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Activity Type}}&\multicolumn{4}{c|}{SUPP}\\
+    \hline
+     \multicolumn{2}{|l|}{\textbf{Participant Number}} &     1   &   2   &   3   &\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Participant Short Name}} &     AA   &   OT   &   UA   &\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Person-weeks per participant:}} &     18 weeks   &   18 weeks   &   18 weeks   &\\
+    \hline
+  \end{tabularx}
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Objectives} \\
+      \begin{itemize}
+      \item Implement computer vision algorithms to extract features on image data.\\
+      \end{itemize}
+    \end{minipage}
+  }
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Description of work} \\
+      \textbf{Task-1:} Implement Harris corner detection algorithm. \\
+      \textbf{Task-2:} Implement FAST corner detection algorithm. \\
+      \textbf{Task-3:} Implement SIFT extractor. \\
+      \textbf{Task-4:} Implement SIFT matcher. \\
+      \textbf{Task-5:} Implement blob detection algorithms. \\
+    \end{minipage}
+  }
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Deliverables} \\
+      \begin{itemize}
+      \item Feature Module\\
+      \end{itemize}
+    \end{minipage}
+  }
+\newpage
+  \begin{tabularx}{\textwidth}{|*{6}{Y|}}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Work Package Number}}&WP-3.3&\multicolumn{2}{c|}{\textbf{Start Date:}}&19.01.2016\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Work Package Title}}&\multicolumn{4}{c|}{Data Module}\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Activity Type}}&\multicolumn{4}{c|}{SUPP}\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Participant Number}} &     1   &     &     &\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Participant Short Name}} &     AA   &    &     &\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Person-weeks per participant:}} &   3 weeks   &&&\\
+    \hline
+  \end{tabularx}
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Objectives} \\
+      \begin{itemize}
+      \item Implement data structures that are commonly used with computer vision algorithms.\\
+      \end{itemize}
+    \end{minipage}
+  }
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Description of work} \\
+      \textbf{Task-1:} Implement data structures. \\
+      \textbf{Task-2:} Provide functions for data structures to manipulate them. \\
+      \textbf{Task-3:} Implement helper classes to make data structures compatible with Renderscript API. \\
+    \end{minipage}
+  }
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Deliverables} \\
+      \begin{itemize}
+      \item Data Module\\
+      \end{itemize}
+    \end{minipage}
+  }
+\newpage
+  \begin{tabularx}{\textwidth}{|*{6}{Y|}}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Work Package Number}}&WP-3.4&\multicolumn{2}{c|}{\textbf{Start Date:}}&15.02.2016\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Work Package Title}}&\multicolumn{4}{c|}{Async Module}\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Activity Type}}&\multicolumn{4}{c|}{SUPP}\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Participant Number}} &     3   &     &     &\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Participant Short Name}} &     UA   &    &     &\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Person-weeks per participant:}} &   3 weeks   &&&\\
+    \hline
+  \end{tabularx}
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Objectives} \\
+      \begin{itemize}
+      \item Implement ready to use async holder classes for core functionalities.\\
+      \end{itemize}
+    \end{minipage}
+  }
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Description of work} \\
+      \textbf{Task-1:} Implement Async class with respect of concurrency principles \\
+    \end{minipage}
+  }
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Deliverables} \\
+      \begin{itemize}
+      \item Data Module\\
+      \end{itemize}
+    \end{minipage}
+  }
+\newpage
+  \begin{tabularx}{\textwidth}{|*{6}{Y|}}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Work Package Number}}&WP-3.5&\multicolumn{2}{c|}{\textbf{Start Date:}}&09.05.2016\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Work Package Title}}&\multicolumn{4}{c|}{Samples}\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Activity Type}}&\multicolumn{4}{c|}{SUPP}\\
+    \hline
+     \multicolumn{2}{|l|}{\textbf{Participant Number}} &     1   &   2   &   3   &\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Participant Short Name}} &     AA   &   OT   &   UA   &\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Person-weeks per participant:}} &     2 weeks   &   2 weeks   &   2 weeks   &\\
+    \hline
+  \end{tabularx}
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Objectives} \\
+      \begin{itemize}
+      \item Provide sample Android applications for all functionalties of the library.\\
+      \end{itemize}
+    \end{minipage}
+  }
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Description of work} \\
+      \textbf{Task-1:} Implement Android application for all core features. \\
+    \end{minipage}
+  }
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Deliverables} \\
+      \begin{itemize}
+      \item Sample Applications\\
+      \end{itemize}
+    \end{minipage}
+  }
+\newpage
+  \begin{tabularx}{\textwidth}{|*{6}{Y|}}
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Work Package Number}}&WP-4&\multicolumn{2}{c|}{\textbf{Start Date:}}&23.05.2016\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Work Package Title}}&\multicolumn{4}{c|}{Test}\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Activity Type}}&\multicolumn{4}{c|}{SUPP}\\
+    \hline
+     \multicolumn{2}{|l|}{\textbf{Participant Number}} &     1   &   2   &   3   &\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Participant Short Name}} &     AA   &   OT   &   UA   &\\
+    \hline
+    \multicolumn{2}{|l|}{\textbf{Person-weeks per participant:}} &     1 week   &   1 week   &   1 week   &\\
+    \hline
+  \end{tabularx}
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Objectives} \\
+      \begin{itemize}
+      \item Write unit tests for all modules.\\
+      \end{itemize}
+    \end{minipage}
+  }
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Description of work} \\
+      \textbf{Task-1:} By writing unit tests validate that all modules work correctly. \\
+    \end{minipage}
+  }
+
+  \fbox{
+    \begin{minipage}{37.3em}
+      \textbf{Deliverables} \\
+      \begin{itemize}
+      \item -\\
+      \end{itemize}
+    \end{minipage}
+  }
+\end{subsubsection}
+\end{section}
+
+\newpage
+
+\begin{section}{Methodology and Analysis}
+  \begin{subsection}{Feasibility Study}
+    \paragraph{}{reVision is an open source and non-profit project so there is no need to examine the financial feasibility. The project is analyzed only in operational and technical sides.}
+    \begin{subsubsection}{Operational Feasibility}
+      \paragraph{}{Computer vision developers feel the lack of a decent computer vision library on Android platform. Creating a high performance computer vision application on Android takes too much effort. This project, if succeeds will become a ready to use and collaborative tool for Android developers.}
+    \end{subsubsection}
+
+    \begin{subsubsection}{Technical Feasibility}
+      \paragraph{}{Widely used libraries for computer vision and GPU computing such as OpenCV, OpenCL, and CUDA, cannot be used on Android platform because of incompatibilities of devices and lack of drivers. For this reason a new GPU computing engine named Renderscript was presented. But Renderscript does not have a complete computer vision library.}
+      \paragraph{}{reVision uses Renderscript for data-parallel GPU computations. Since Renderscript technology is hardware and version independent among all recent Android devices, reVision can also be used universally on every Android device. The runtime frame-rates vary between different devices but reVision is ensured to work at the most efficient way that the device is capable of.}
+    \end{subsubsection}
+  \end{subsection}
+\end{section}
+
+
+\end{document}
