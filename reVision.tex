@@ -2,27 +2,35 @@
 \usepackage{gantt} \usepackage{pdflscape} \usepackage{parskip}
 \usepackage{afterpage} \usepackage{pbox}
 \usepackage[margin=1in]{geometry} \usepackage{multirow,tabularx}
+\usepackage{graphicx}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 \renewcommand{\arraystretch}{2}
 
 \begin{document}
-
   \author{An{\i}l Can Ayd{\i}n, Onur Temizkan, Ula\c{s} Akdeniz}
   \title{reVision Project Report}
   \maketitle
+  \begin{figure}[t]
+    \includegraphics[width=10cm,keepaspectratio=true]{iyte}
+  \end{figure}
 \newpage
 \begin{section}{Description of the Work}
 \paragraph{}{%
   Computer vision applications need parallel computation to perform in reasonable response time.
   In order to satisfy that performance, developers use libraries like OpenCL and CUDA which move the computation
   load to GPU. However high performance GPU intensive computation on Android platform is a tough issue because
-  of hardware dependencies and incompatibilities of libraries. For instance OpenCL GPU computation library is not 
+  of hardware dependencies and incompatibilities of libraries. For instance OpenCL GPU computation library is not
   supported on all Android devices. So, creating hardware independent applications using OpenCL is simply impossible.
   Because of those restrictions mentioned above, Renderscript computation module is presented by Google in 2011.
   It is ﻿a hardware-independent computation engine that operates at the native level. But there is no vision library
   written in Renderscript.
 }
-\paragraph{}{reVision is an open source, Renderscript powered computer vision library that can operate on all Android devices. It contains ready to use computer vision algorithm implementations with their sample applications. The vision algorithms are implemented in Renderscript. Also all Renderscript parts have their own Java parts for outer communication with Android platform.}
+\paragraph{}{%
+  reVision is an open source, Renderscript powered computer vision library that can operate on all Android devices.
+  It contains ready to use computer vision algorithm implementations with their sample applications. The vision
+  algorithms are implemented in Renderscript. Also all Renderscript parts have their own Java parts for outer
+  communication with Android platform.
+}
 \paragraph{}{Response times of reVision modules are small enough to process video streams in real time with minimum data loss. It also can be used in non-blocking way to not affect the other functionalities of client applications.}
 \end{section}
 
