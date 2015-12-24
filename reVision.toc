@@ -1,0 +1,58 @@
+\contentsline {section}{\numberline {1}Description of the Work}{2}
+\contentsline {paragraph}{}{2}
+\contentsline {paragraph}{}{2}
+\contentsline {paragraph}{}{2}
+\contentsline {section}{\numberline {2}Project Management}{3}
+\contentsline {subsection}{\numberline {2.1}Overall Strategy}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {paragraph}{Planning:}{3}
+\contentsline {paragraph}{Requirement Analysis:}{3}
+\contentsline {paragraph}{Implementation:}{3}
+\contentsline {paragraph}{Testing:}{3}
+\contentsline {subsection}{\numberline {2.2}Gantt Chart}{4}
+\contentsline {subsection}{\numberline {2.3}Detailed Work Description}{5}
+\contentsline {subsubsection}{\numberline {2.3.1}Work Package List}{5}
+\contentsline {subsubsection}{\numberline {2.3.2}Deliverable List}{6}
+\contentsline {subsubsection}{\numberline {2.3.3}Milestones List}{7}
+\contentsline {subsubsection}{\numberline {2.3.4}Work Package Descriptions}{8}
+\contentsline {subsubsection}{\numberline {2.3.5}Summary Effort Table}{17}
+\contentsline {subsection}{\numberline {2.4}Pert Diagram}{18}
+\contentsline {subsection}{\numberline {2.5}Risk Management}{19}
+\contentsline {paragraph}{}{19}
+\contentsline {section}{\numberline {3}Methodology and Analysis}{20}
+\contentsline {subsection}{\numberline {3.1}Feasibility Study}{20}
+\contentsline {paragraph}{}{20}
+\contentsline {subsubsection}{\numberline {3.1.1}Operational Feasibility}{20}
+\contentsline {paragraph}{}{20}
+\contentsline {subsubsection}{\numberline {3.1.2}Technical Feasibility}{20}
+\contentsline {paragraph}{}{20}
+\contentsline {paragraph}{}{20}
+\contentsline {subsection}{\numberline {3.2}The Process Model and Its Particular Adaptation}{21}
+\contentsline {paragraph}{}{21}
+\contentsline {paragraph}{}{21}
+\contentsline {paragraph}{}{21}
+\contentsline {paragraph}{}{21}
+\contentsline {subsection}{\numberline {3.3}Functional and Non-Functional Requirements}{22}
+\contentsline {subsubsection}{\numberline {3.3.1}Functional Requirements}{22}
+\contentsline {paragraph}{Filtering:}{22}
+\contentsline {paragraph}{Feature Detection:}{22}
+\contentsline {paragraph}{Object Tracking:}{22}
+\contentsline {subsubsection}{\numberline {3.3.2}Non-Functional Requirements}{22}
+\contentsline {paragraph}{Performance Requirements:}{22}
+\contentsline {paragraph}{Reliability Requirements:}{22}
+\contentsline {paragraph}{Usability Requirements:}{22}
+\contentsline {subsection}{\numberline {3.4}Use Cases}{23}
+\contentsline {section}{\numberline {4}Planned Solution/Product}{25}
+\contentsline {paragraph}{}{25}
+\contentsline {paragraph}{}{25}
+\contentsline {paragraph}{}{25}
+\contentsline {paragraph}{}{25}
+\contentsline {section}{\numberline {5}Related Work/Similar Solutions}{26}
+\contentsline {paragraph}{}{26}
+\contentsline {paragraph}{}{26}
+\contentsline {paragraph}{}{26}
+\contentsline {paragraph}{}{26}
+\contentsline {section}{\numberline {6}Impact}{27}
+\contentsline {paragraph}{}{27}
+\contentsline {paragraph}{}{27}
+\contentsline {paragraph}{}{27}

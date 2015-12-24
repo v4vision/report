@@ -2,7 +2,10 @@
 \usepackage{gantt} \usepackage{pdflscape} \usepackage{parskip}
 \usepackage{afterpage} \usepackage{pbox}
 \usepackage[margin=1in]{geometry} \usepackage{multirow,tabularx}
+\usepackage{wrapfig}
 \usepackage{graphicx}
+\graphicspath{ {images/} }
+\pagenumbering{arabic}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 \renewcommand{\arraystretch}{2}
 
@@ -11,6 +14,7 @@
     \centering
     {\scshape\Large Izmir Institute of Technology\par}
     {\scshape\large Department of Computer Engineering\par}
+    %{CENG415 Senior Design Project & Seminar 1\par}
     \vspace{2.5cm}
 	  {\huge reVision\par}
 	  \vspace{1cm}
@@ -27,6 +31,8 @@
 % Bottom of the page
 	{\large \today\par}
   \end{titlepage}
+  \newpage
+  \tableofcontents
 
 \newpage
 \begin{section}{Description of the Work}
@@ -36,8 +42,8 @@
   load to GPU. However high performance GPU intensive computation on Android platform is a tough issue because
   of hardware dependencies and incompatibilities of libraries. For instance OpenCL GPU computation library is not
   supported on all Android devices. So, creating hardware independent applications using OpenCL is simply impossible.
-  Because of those restrictions mentioned above, Renderscript computation module is presented by Google in 2011.
-  It is ﻿a hardware-independent computation engine that operates at the native level. But there is no vision library
+  Because of those restrictions mentioned above, Renderscript computation module is presented by Google in 2011 \cite{renderscript_release}.
+  It is ﻿a hardware-independent computation engine that operates at the native level \cite{renderscript_api}. But there is no vision library
   written in Renderscript.
 }
 \paragraph{}{%
@@ -53,7 +59,7 @@
 
 \begin{section}{Project Management}
   \begin{subsection}{Overall Strategy}
-    \paragraph{}{reVision's iterative development process consist of project management and planning, requirement analysis, implementation and testing. Each iteration results in at least one new module with its sample application.}\\ \\
+    \paragraph{}{reVision's iterative development process consists of project management and planning, requirement analysis, implementation and testing. Each iteration results in at least one new module with its sample application.}\\ \\
     Summary of an iteration is described below.
     \paragraph{Planning:}{The scope of the module to be written, desired specs and details are discussed.}
     \paragraph{Requirement Analysis:}{The output of the module, needed arguments and optional specs are discussed.}
@@ -614,7 +620,7 @@
   \begin{subsection}{Feasibility Study}
     \paragraph{}{reVision is an open source and non-profit project so there is no need to examine the financial feasibility. The project is analyzed only in operational and technical sides.}
     \begin{subsubsection}{Operational Feasibility}
-      \paragraph{}{Computer vision developers feel the lack of a decent computer vision library on Android platform. Creating a high performance computer vision application on Android takes too much effort. This project, if succeeds will become a ready to use and collaborative tool for Android developers.}
+      \paragraph{}{Computer vision developers feel the lack of a decent computer vision library on Android platform. Creating a high performance computer vision application on Android takes too much effort. This project, if succeeds will become a ready-to-use and collaborative tool for Android developers.}
     \end{subsubsection}
 
     \begin{subsubsection}{Technical Feasibility}
@@ -624,7 +630,7 @@
   \end{subsection}
   \newpage
   \begin{subsection}{The Process Model and Its Particular Adaptation}
-    \paragraph{}{According to R. S. Pressman there are several process model types including linear sequential model, prototype model, evolutionary models and etc. In real life most them are used according to the project necessities and requirements.}
+    \paragraph{}{According to R. S. Pressman \cite{pressman} there are several process model types including linear sequential model, prototype model, evolutionary models and etc. In real life most them are used according to the project necessities and requirements.}
 \paragraph{}{reVision is being developed using incremental model which is an evolutionary model. Every release is published after a work cycle which includes all the phases of the software development process. Each release extends the project with at least one module or functionality with its sample application.}
 \paragraph{}{Incremental model is suitable for this project because the project team is not experienced in the computer vision field. The incremental model gives the team, the option of refactoring the design and evolving the project over time, which the other models would not give.}
 \paragraph{}{The development cycle can simply be clarified with following steps; Requirement analysis, Planning, Design, Implementation and Testing. Every development iteration of reVision include each one of those steps.}
@@ -632,6 +638,15 @@
   \newpage
   \begin{subsection}{Functional and Non-Functional Requirements}
     \begin{subsubsection}{Functional Requirements}
+      \paragraph{Filtering:}{
+      Image filtering is required for other modules to provide initial data. It also can be used as standalone to get filtered image.
+      }
+      \paragraph{Feature Detection:}{
+      Feature detection is one of the outputs of the library which provides marked image matrix of the detected features such as edges, corners, blobs.
+      }
+      \paragraph{Object Tracking:}{
+      Object tracking is one of the features of the library which detects the object and tracks the object in the given stream.
+      }
     \end{subsubsection}
 
     \begin{subsubsection}{Non-Functional Requirements}
@@ -761,16 +776,151 @@
 
   \end{subsection}
 \end{section}
+\newpage
+\begin{section}{Planned Solution/Product}
+  \paragraph{}{
+  reVision is planned to be an open source computer vision library that can operate on all Android devices.
+  By using the power of Renderscript, it will contain ready to use computer vision algorithm implementations
+  with their sample applications.
+  }
+  \paragraph{}{
+  Computer vision algorithms will be implemented in Renderscript. When the Renderscript presented, the goal of
+  Renderscript was to bring a lower level, higher performance API to Android developers \cite{renderscript_release}.
+  So, the goal of reVision is to present a higher level, closer to Renderscript performance, and easy-to-use
+  API to Android developers.
+  }
+  \paragraph{}{
+  Sample applications are planned to exemplify all features of the library in order to guide the developers on
+  their developing process. Figure 1 indicates a couple of pictures from first prototype of reVision. Image on the
+  right-hand-side is a Harris Algortihm applied form of the left-handside-image.
+
+  }
+  \begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.17]{clean.png}
+    \includegraphics[scale=0.17]{detected.png}
+
+    \caption{First prototype of reVision: Implementation of Harris Corner Detection}
+    \label{fig:mesh1}
+  \end{figure}
+
+
+  \paragraph{}{
+  Eventually, reVision will be the solution to absence of an easy-to-use, and well performanced library operates on
+  all Android devices.
+  }
+
+\end{section}
+\newpage
+\begin{section}{Related Work/Similar Solutions}
+\paragraph{}{
+  There are several libraries about the vision. One of the most significant of them is OpenCV.
+}
+
+  \paragraph{}{
+  \begin{wrapfigure}{l}{0.25\textwidth}
+    \centering
+    \includegraphics[width=0.25\textwidth]{opencv.png}
+\end{wrapfigure}
+
+OpenCV is released under a BSD license and hence it’s free for
+both academic and commercial use. It has C++, C, Python and Java interfaces and supports Windows, Linux, Mac OS,
+iOS and Android. OpenCV was designed for computational efficiency and with a strong focus on real-time applications.
+Written in optimized C/C++, the library can take advantage of multi-core processing. Enabled with OpenCL, it can
+take advantage of the hardware acceleration of the underlying heterogeneous compute platform. Adopted all around
+the world, OpenCV has more than 47 thousand people of user community and estimated number of downloads exceeding 9
+million. Usage ranges from interactive art, to mines inspection, stitching maps on the web or through advanced
+robotics \cite{opencv}.
+
+  }
+
+  \paragraph{}{
+  \begin{wrapfigure}{r}{0.25\textwidth}
+    \centering
+    \includegraphics[width=0.25\textwidth]{fastcv.jpg}
+\end{wrapfigure}
+Another computer vision library is the Qualcomm's FastCV\textsuperscript{TM} \cite{fastcv}. FastCV\textsuperscript{TM} library offers a
+mobile-optimized computer vision (CV) library which includes the most frequently used vision processing functions
+for use across a wide array of mobile devices, even mass-market handsets. Middleware developers can use FastCV to
+build the frameworks needed by developers of computer vision apps; Qualcomm's Augmented Reality (AR) SDK is a good
+example. Developers of advanced CV application can also use FastCV functions directly in their application. FastCV will
+enable you to add new user experiences into your camera-based apps like:
+\begin{itemize}
+  \item gesture recognition
+  \item face detection, tracking and recognition
+  \item text recognition and tracking
+  \item augmented reality
+\end{itemize}
+
+}
+
+\paragraph{}{
+Also Cuda\textsuperscript{TM} \cite{cuda} can be mentioned as a similar work. CUDA\textsuperscript{TM} is a parallel computing platform and programming model invented by
+NVIDIA. It enables dramatic increases in computing performance by harnessing the power of the graphics processing unit
+(GPU). To use CUDA on your system, you will need the following:
+\begin{itemize}
+  \item Android development device with a CUDA-capable GPU
+  \item A supported version of Linux to cross-compile
+  \item NVIDIA CodeWorks for Android with CUDA support
+\end{itemize}
+}
+
+\end{section}
+
+\newpage
+
+\begin{section}{Impact}
+
+\paragraph{}{
+In the impact section the economical, cultural, ethical outcomes of the project is
+discussed. The realistic constraints of the project will be mentioned. Besides being a thesis project,
+reVision is a nonprofit project as a matter of course, aims to make the Android world a better place for computer vision
+application developers. Thus, there are several constraints about the project. One of them is that
+unlike its similars, it is carried out by students and their supervisor. When compared to similar works,
+students versus crowded group of experienced developers or big companies which milestones of the technology.
+So, this situation both limits the reality of the project, and enthuses its participants with the dream of
+taking a part in a project that will be a milestone as well.
+
+}
+
+\paragraph{}{
+  reVision also is an opportunity to learn new technologies and methodologies for its developers. It focuses on the
+  computer vision and its applications by using mobile devices, and data-parallel GPU computation. So, project team
+  get a chance to improve in these topics. The project will help the developers to understand the formal procedures
+  and writing formal reports. Nearly all the software engineering processes are touched on.
+}
+
+\paragraph{}{
+  All in all,  reVision is a hardware independent computer vision library with companion sample applications
+  for Android which will be an open source and GPU-ready, and strives to make the Android world a better
+  place for computer vision application developers.
+
+}
+
+\end{section}
 
 \newpage
           \begin{thebibliography}{9}
+          \bibitem{renderscript_release}
+            Introducing Renderscript -
+              http://android-developers.blogspot.com.tr/2011/02/introducing-renderscript.html
 
-          \bibitem{lamport94}
-            Leslie Lamport,
-            \emph{\LaTeX: a document preparation system},
-            Addison Wesley, Massachusetts,
-            2nd edition,
-            1994.
+          \bibitem{renderscript_api}
+            Renderscript - http://developer.android.com/intl/es/guide/topics/renderscript/compute.html
+
+          \bibitem{pressman}
+            Roger S. Pressman, Software Engineering A Practitioner's Approach,
+            McGraw-Hill, 2001, pp. 26-39
+
+          \bibitem{opencv}
+            OpenCV -  http://opencv.org/
+
+          \bibitem{fastcv}
+            FastCV - https://developer.qualcomm.com/software/fastcv-sdk
+
+          \bibitem{cuda}
+          Cuda - http://docs.nvidia.com/gameworks/content/technologies/mobile/cuda\_android\_main.htm
 
           \end{thebibliography}
+
 \end{document}
