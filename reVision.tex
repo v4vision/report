@@ -4,19 +4,22 @@
 \usepackage[margin=1in]{geometry} \usepackage{multirow,tabularx}
 \usepackage{wrapfig}
 \usepackage{graphicx}
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
 \graphicspath{ {images/} }
 \pagenumbering{arabic}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 \renewcommand{\arraystretch}{2}
+\definecolor{new-blue}{RGB}{51,153,255}
 
 \begin{document}
   \begin{titlepage}
     \centering
     {\scshape\Large Izmir Institute of Technology\par}
     {\scshape\large Department of Computer Engineering\par}
-    %{CENG415 Senior Design Project & Seminar 1\par}
+    {CENG415 Senior Design Project & Seminar 1\par}
     \vspace{2.5cm}
-	  {\huge reVision\par}
+	  {\huge re\sqrt{ision}\par}
 	  \vspace{1cm}
 	  {\Large Renderscript for Computer Vision\par}
 	\vspace{2cm}
@@ -24,7 +27,7 @@
   {\itshape180201060, 180201004, 180201063\par}
 	\vfill
 	supervised by\par
-	\large{Asst Prof Dr.~Mustafa \textsc{\"{O}zuysal}}
+	\large{Asst. Prof. Dr.~Mustafa \textsc{\"{O}zuysal}}
 
 	\vfill
 
@@ -601,8 +604,19 @@
  \end{tabularx}
 \end{subsubsection}
 \newpage
+\begin{landscape}
 \begin{subsection}{Pert Diagram}
+  \newline
+  \vspace{1cm}
+  \newline
+  \begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.80]{pert.png}
+    \newline
+    \caption{Pert Diagram}
+  \end{figure}
 \end{subsection}
+\end{landscape}
 \newpage
 \begin{subsection}{Risk Management}
   \paragraph{}{%
@@ -632,8 +646,8 @@
   \begin{subsection}{The Process Model and Its Particular Adaptation}
     \paragraph{}{According to R. S. Pressman \cite{pressman} there are several process model types including linear sequential model, prototype model, evolutionary models and etc. In real life most them are used according to the project necessities and requirements.}
 \paragraph{}{reVision is being developed using incremental model which is an evolutionary model. Every release is published after a work cycle which includes all the phases of the software development process. Each release extends the project with at least one module or functionality with its sample application.}
-\paragraph{}{Incremental model is suitable for this project because the project team is not experienced in the computer vision field. The incremental model gives the team, the option of refactoring the design and evolving the project over time, which the other models would not give.}
-\paragraph{}{The development cycle can simply be clarified with following steps; Requirement analysis, Planning, Design, Implementation and Testing. Every development iteration of reVision include each one of those steps.}
+\paragraph{}{Incremental model is suitable for this project because the project team is not experienced in computer vision field. The incremental model gives the option of refactoring the design and evolving the project through time to the team, which other models would not give.}
+\paragraph{}{Development cycle can simply be clarified with following steps; Requirement analysis, Planning, Design, Implementation and Testing. Every development iteration of reVision include each one of those steps.}
   \end{subsection}
   \newpage
   \begin{subsection}{Functional and Non-Functional Requirements}
@@ -647,8 +661,54 @@
       \paragraph{Object Tracking:}{
       Object tracking is one of the features of the library which detects the object and tracks the object in the given stream.
       }
-    \end{subsubsection}
+      \newline
+      \vspace{1cm}
+      \newline
+      \lstset{language=C++,
+                      caption={Harris Kernel from the first prototype},
+                      captionpos=b,
+                      backgroundcolor=\color{black!5},
+                      keywordstyle=\color{new-blue},
+                      stringstyle=\color{red},
+                      commentstyle=\color{green},
+                      basicstyle=\footnotesize,% basic font setting
+                      morecomment=[l][\color{magenta}]{\#}
+      }
+      {\ttfamily
+      \begin{lstlisting}
+        uchar4 __attribute__((kernel)) harris(const uchar4 in,
+          uint32_t x, uint32_t y)
+        {
+            float c = 0.04;
+            float4 convXpixel =
+              rsUnpackColor8888(rsGetElementAt_uchar4(convX, x, y));
+            float4 convYpixel =
+              rsUnpackColor8888(rsGetElementAt_uchar4(convY, x, y));
 
+            float Ix = convXpixel.r * gMonoMult[0] + convXpixel.g *
+              gMonoMult[1] + convXpixel.b * gMonoMult[2];
+            float Iy = convYpixel.r * gMonoMult[0] + convYpixel.g *
+              gMonoMult[1] + convYpixel.b * gMonoMult[2];
+
+            float Ixx = Ix * Ix;
+            float Iyy = Iy * Iy;
+            float Ixy = Ix * Iy;
+            float cornerResponse =
+              (Ixx*Iyy - Ixy*Ixy - c*(Ixx+Iyy)*(Ixx+Iyy));
+
+            if(cornerResponse < harrisThreshold ) {
+                cornerColorRGB.r = 0;
+                cornerColorRGB.g = 255;
+                cornerColorRGB.b = 0;
+                return cornerColorRGB;
+            } else {
+                return in;
+            }
+        }
+      \end{lstlisting}
+      }
+    \end{subsubsection}
+    \newpage
     \begin{subsubsection}{Non-Functional Requirements}
       \paragraph{Performance Requirements:}{
       The response time problem were the thing that triggered the creation of reVision project. Without reasonable
@@ -755,7 +815,6 @@
           \hline
     \end{tabularx} \\
     \newline
-    \newline
     \vspace{1cm}
     \newline
     \begin{tabularx}{\textwidth}{|*{2}{Y|}}
@@ -780,12 +839,12 @@
 \begin{section}{Planned Solution/Product}
   \paragraph{}{
   reVision is planned to be an open source computer vision library that can operate on all Android devices.
-  By using the power of Renderscript, it will contain ready to use computer vision algorithm implementations
+  By using the power of Renderscript, it will provide ready to use computer vision algorithm implementations
   with their sample applications.
   }
   \paragraph{}{
-  Computer vision algorithms will be implemented in Renderscript. When the Renderscript presented, the goal of
-  Renderscript was to bring a lower level, higher performance API to Android developers \cite{renderscript_release}.
+  Computer vision algorithms will be implemented in Renderscript. When the Renderscript was presented, the goal of
+  it had been to bring a higher performance API to Android developers \cite{renderscript_release}.
   So, the goal of reVision is to present a higher level, closer to Renderscript performance, and easy-to-use
   API to Android developers.
   }
@@ -806,7 +865,7 @@
 
 
   \paragraph{}{
-  Eventually, reVision will be the solution to absence of an easy-to-use, and well performanced library operates on
+  Eventually, reVision will be a solution to absence of an easy-to-use, and well performanced library operates on
   all Android devices.
   }
 
@@ -872,28 +931,26 @@ NVIDIA. It enables dramatic increases in computing performance by harnessing the
 \begin{section}{Impact}
 
 \paragraph{}{
-In the impact section the economical, cultural, ethical outcomes of the project is
-discussed. The realistic constraints of the project will be mentioned. Besides being a thesis project,
+In the impact section, realistic constraints of the project will be mentioned. Besides being a thesis project,
 reVision is a nonprofit project as a matter of course, aims to make the Android world a better place for computer vision
-application developers. Thus, there are several constraints about the project. One of them is that
-unlike its similars, it is carried out by students and their supervisor. When compared to similar works,
-students versus crowded group of experienced developers or big companies which milestones of the technology.
-So, this situation both limits the reality of the project, and enthuses its participants with the dream of
-taking a part in a project that will be a milestone as well.
+application developers. Thus, there are several constraints about the project. When compared to similar works,
+reVision is maintained by students instead of groups of experienced developers or big companies.
+So, this situation limits the scope of the project, but it also motivates its participants about the dream of
+taking part in a project that can be a milestone as well.
 
 }
 
 \paragraph{}{
-  reVision also is an opportunity to learn new technologies and methodologies for its developers. It focuses on the
-  computer vision and its applications by using mobile devices, and data-parallel GPU computation. So, project team
-  get a chance to improve in these topics. The project will help the developers to understand the formal procedures
-  and writing formal reports. Nearly all the software engineering processes are touched on.
+  reVision is also an opportunity to learn new technologies and methodologies for its developers. It focuses on the
+  computer vision and its applications using mobile devices, and data-parallel GPU computation. So, project team participants
+  get a chance to improve themselves in these topics. The project will help the developers to understand the formal procedures
+  of writing formal reports. Nearly all the software engineering processes are revisited.
 }
 
 \paragraph{}{
   All in all,  reVision is a hardware independent computer vision library with companion sample applications
-  for Android which will be an open source and GPU-ready, and strives to make the Android world a better
-  place for computer vision application developers.
+  for Android which will be an open source and GPU-ready, and strives to make Android developers more productive
+  on computer vision projects.
 
 }
 

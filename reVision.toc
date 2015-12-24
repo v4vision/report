@@ -37,22 +37,22 @@
 \contentsline {paragraph}{Filtering:}{22}
 \contentsline {paragraph}{Feature Detection:}{22}
 \contentsline {paragraph}{Object Tracking:}{22}
-\contentsline {subsubsection}{\numberline {3.3.2}Non-Functional Requirements}{22}
-\contentsline {paragraph}{Performance Requirements:}{22}
-\contentsline {paragraph}{Reliability Requirements:}{22}
-\contentsline {paragraph}{Usability Requirements:}{22}
-\contentsline {subsection}{\numberline {3.4}Use Cases}{23}
-\contentsline {section}{\numberline {4}Planned Solution/Product}{25}
-\contentsline {paragraph}{}{25}
-\contentsline {paragraph}{}{25}
-\contentsline {paragraph}{}{25}
-\contentsline {paragraph}{}{25}
-\contentsline {section}{\numberline {5}Related Work/Similar Solutions}{26}
+\contentsline {subsubsection}{\numberline {3.3.2}Non-Functional Requirements}{23}
+\contentsline {paragraph}{Performance Requirements:}{23}
+\contentsline {paragraph}{Reliability Requirements:}{23}
+\contentsline {paragraph}{Usability Requirements:}{23}
+\contentsline {subsection}{\numberline {3.4}Use Cases}{24}
+\contentsline {section}{\numberline {4}Planned Solution/Product}{26}
 \contentsline {paragraph}{}{26}
 \contentsline {paragraph}{}{26}
 \contentsline {paragraph}{}{26}
 \contentsline {paragraph}{}{26}
-\contentsline {section}{\numberline {6}Impact}{27}
+\contentsline {section}{\numberline {5}Related Work/Similar Solutions}{27}
 \contentsline {paragraph}{}{27}
 \contentsline {paragraph}{}{27}
 \contentsline {paragraph}{}{27}
+\contentsline {paragraph}{}{27}
+\contentsline {section}{\numberline {6}Impact}{28}
+\contentsline {paragraph}{}{28}
+\contentsline {paragraph}{}{28}
+\contentsline {paragraph}{}{28}
